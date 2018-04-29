@@ -1,5 +1,8 @@
-package movies.movies;
+package com.movies;
 
+import com.movies.dao.MovieRepository;
+import com.movies.main.MoviesApplication;
+import com.movies.model.Movie;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,8 +69,8 @@ public class MoviesControllerTests {
 
         this.repo.deleteAllInBatch();
 
-        this.movieList.add(repo.save(new Movie("2010","film","Los","160","Paul")));
-        this.movieList.add(repo.save(new Movie("2015","granie","Muzyka","120","Marcin")));
+        this.movieList.add(repo.save(new Movie(2010,"film","Los",160,"Paul")));
+        this.movieList.add(repo.save(new Movie(2015,"granie","Muzyka",120,"Marcin")));
     }
 
     @Test
@@ -76,17 +79,17 @@ public class MoviesControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$.id", is(this.movieList.get(0).getId().intValue())))
-                .andExpect(jsonPath("$.year", is("2010")))
+                .andExpect(jsonPath("$.year", is(2010)))
                 .andExpect(jsonPath("$.description", is("film")))
                 .andExpect(jsonPath("$.name", is("Los")))
-                .andExpect(jsonPath("$.duration", is("160")))
+                .andExpect(jsonPath("$.duration", is(160)))
                 .andExpect(jsonPath("$.director", is("Paul")));
     }
 
     @Test
     public void addMovie() throws Exception {
         String movieJson = json(new Movie(
-                "2018", "opis","Film","90","Tomek"));
+                2018, "opis","Film",90,"Tomek"));
 
         this.mockMvc.perform(post("/movies")
                 .contentType(contentType)

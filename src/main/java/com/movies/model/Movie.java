@@ -1,4 +1,4 @@
-package movies.movies;
+package com.movies.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,19 +10,19 @@ public class Movie {
     @GeneratedValue
     private long id;
 
-    private String year;
+    private Integer year;
 
     private String description;
 
     private String name;
 
-    private String duration;
+    private Integer duration;
 
     private String director;
 
-    private Movie() {}
+    protected Movie() {}
 
-    public Movie(String year,String description,String name,String duration,String director)
+    public Movie(Integer year,String description,String name,Integer duration,String director)
     {
         this.description=description;
         this.year=year;
@@ -54,12 +54,12 @@ public class Movie {
     {
         this.name=name;
     }
-    public String getYear()
+    public Integer getYear()
     {
         return year;
     }
 
-    public void setYear(String year)
+    public void setYear(Integer year)
     {
         this.year=year;
     }
@@ -73,12 +73,12 @@ public class Movie {
         this.description=description;
     }
 
-    public String getDuration()
+    public Integer getDuration()
     {
         return duration;
     }
 
-    public void setDuration(String duration)
+    public void setDuration(Integer duration)
     {
         this.duration=duration;
     }
