@@ -1,7 +1,6 @@
 package com.movies;
 
-import com.movies.dao.MovieRepository;
-import com.movies.main.MoviesApplication;
+import com.movies.repository.MovieRepository;
 import com.movies.model.Movie;
 import org.junit.Before;
 import org.junit.Test;

@@ -19,13 +19,13 @@ public class MoviesController {
     private MovieService movieService;
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public List<Movie> showMovies()
     {
         return movieService.getMovies();
     }
 
-    @RequestMapping(value = "/{movieId}", method = RequestMethod.GET)
+    @GetMapping("/{movieId}")
     public ResponseEntity showMovie(@PathVariable Long movieId)
     {
         Optional<Movie> movie = movieService.getMovie(movieId);
@@ -36,7 +36,7 @@ public class MoviesController {
         return new ResponseEntity(movie, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     ResponseEntity createMovie(@RequestBody Movie input)
     {
 

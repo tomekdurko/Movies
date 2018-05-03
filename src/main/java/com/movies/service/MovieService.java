@@ -1,6 +1,6 @@
 package com.movies.service;
 
-import com.movies.dao.MovieRepository;
+import com.movies.repository.MovieRepository;
 import com.movies.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,7 @@ public class MovieService {
     public MovieService() {}
 
     public Movie createMovie(Movie movie)
+
     {
         return repo.save(movie);
     }
