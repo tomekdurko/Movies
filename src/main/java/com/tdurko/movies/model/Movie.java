@@ -1,4 +1,4 @@
-package com.movies.model;
+package com.tdurko.movies.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,11 +21,11 @@ public class Movie {
     @JsonView(Views.Internal.class)
     private Integer year;
 
-    @NotNull
+    @NotBlank
     @JsonView(Views.Internal.class)
     private String description;
 
-    @NotNull
+    @NotBlank
     @JsonView(Views.Public.class)
     private String name;
 
@@ -32,7 +33,7 @@ public class Movie {
     @JsonView(Views.Internal.class)
     private Integer duration;
 
-    @NotNull
+    @NotBlank
     @JsonView(Views.Internal.class)
     private String director;
 }

@@ -1,7 +1,7 @@
-package com.movies.service;
+package com.tdurko.movies.service;
 
-import com.movies.repository.MovieRepository;
-import com.movies.model.Movie;
+import com.tdurko.movies.repository.MovieRepository;
+import com.tdurko.movies.model.Movie;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

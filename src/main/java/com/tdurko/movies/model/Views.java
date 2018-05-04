@@ -1,4 +1,4 @@
-package com.movies.model;
+package com.tdurko.movies.model;
 
 public class Views {
     public static class Public { }

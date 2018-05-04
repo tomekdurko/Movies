@@ -1,9 +1,9 @@
-package com.movies.controller;
+package com.tdurko.movies.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.movies.model.Movie;
-import com.movies.model.Views;
-import com.movies.service.MovieService;
+import com.tdurko.movies.model.Movie;
+import com.tdurko.movies.model.Views;
+import com.tdurko.movies.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
