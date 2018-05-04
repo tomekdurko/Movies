@@ -1,96 +1,52 @@
 package com.movies.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 
+
+
 @Entity
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Movie {
     @Id
     @GeneratedValue
+    @Getter
+    @Setter
+    @JsonView(Views.Public.class)
     private long id;
 
+    @Getter
+    @Setter
+    @JsonView(Views.Internal.class)
     private Integer year;
 
+    @Getter
+    @Setter
+    @JsonView(Views.Internal.class)
     private String description;
 
+    @Getter
+    @Setter
+    @JsonView(Views.Public.class)
     private String name;
 
+    @Getter
+    @Setter
+    @JsonView(Views.Internal.class)
     private Integer duration;
 
+    @Getter
+    @Setter
+    @JsonView(Views.Internal.class)
     private String director;
 
-    protected Movie() {}
-
-    public Movie(Integer year,String description,String name,Integer duration,String director)
-    {
-        this.description=description;
-        this.year=year;
-        this.director=director;
-        this.duration=duration;
-        this.name=name;
-    }
-    public Movie(Movie nowy)
-    {
-        this.year=nowy.getYear();
-        this.name=nowy.getName();
-        this.duration=nowy.getDuration();
-        this.director=nowy.getDirector();
-        this.description=nowy.getDescription();
-    }
-
-    public Long getId()
-    {
-
-        return id;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name=name;
-    }
-    public Integer getYear()
-    {
-        return year;
-    }
-
-    public void setYear(Integer year)
-    {
-        this.year=year;
-    }
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description=description;
-    }
-
-    public Integer getDuration()
-    {
-        return duration;
-    }
-
-    public void setDuration(Integer duration)
-    {
-        this.duration=duration;
-    }
-
-    public String getDirector()
-    {
-        return director;
-    }
-
-    public void setDirector(String director)
-    {
-        this.director=director;
-    }
 
 }

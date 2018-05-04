@@ -1,6 +1,8 @@
 package com.movies.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.movies.model.Movie;
+import com.movies.model.Views;
 import com.movies.service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +20,19 @@ public class MoviesController {
     @Autowired
     private MovieService movieService;
 
-
+    @JsonView(Views.Public.class)
     @GetMapping
     public List<Movie> showMovies()
     {
         return movieService.getMovies();
     }
 
+    @JsonView(Views.Internal.class)
     @GetMapping("/{movieId}")
     public ResponseEntity showMovie(@PathVariable Long movieId)
     {
         Optional<Movie> movie = movieService.getMovie(movieId);
-        if (movie == null) {
-            return new ResponseEntity("No Movie found for ID " + movieId, HttpStatus.NOT_FOUND);
-        }
+        if (!movie.isPresent()) return new ResponseEntity("No Movie found for ID " + movieId, HttpStatus.NOT_FOUND);
 
         return new ResponseEntity(movie, HttpStatus.OK);
     }

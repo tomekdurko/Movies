@@ -1,5 +1,7 @@
 package com.movies.service;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.movies.model.Views;
 import com.movies.repository.MovieRepository;
 import com.movies.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,12 @@ public class MovieService {
         return repo.save(movie);
     }
 
-    public Optional<Movie> getMovie(Long id)
+
+    public Optional<Movie> getMovie(long id)
     {
         return repo.findById(id);
     }
+
     public List<Movie> getMovies()
     {
         return repo.findAll();
