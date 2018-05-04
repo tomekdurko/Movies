@@ -17,8 +17,13 @@ import java.util.Optional;
 @RequestMapping("/movies")
 public class MoviesController {
 
-    @Autowired
+
     private MovieService movieService;
+    @Autowired
+    public MoviesController(MovieService movieService)
+    {
+        this.movieService = movieService;
+    }
 
     @JsonView(Views.Public.class)
     @GetMapping
