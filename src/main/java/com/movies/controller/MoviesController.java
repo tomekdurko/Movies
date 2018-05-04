@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.movies.model.Movie;
 import com.movies.model.Views;
 import com.movies.service.MovieService;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +17,7 @@ import java.util.Optional;
 @RequestMapping("/movies")
 public class MoviesController {
 
-
     private MovieService movieService;
-    @Autowired
     public MoviesController(MovieService movieService)
     {
         this.movieService = movieService;
@@ -36,19 +34,34 @@ public class MoviesController {
     @GetMapping("/{movieId}")
     public ResponseEntity showMovie(@PathVariable Long movieId)
     {
+        ResponseEntity responseEntity;
         Optional<Movie> movie = movieService.getMovie(movieId);
-        if (!movie.isPresent()) return new ResponseEntity("No Movie found for ID " + movieId, HttpStatus.NOT_FOUND);
-
-        return new ResponseEntity(movie, HttpStatus.OK);
+        if (!movie.isPresent())
+        {
+            responseEntity= new ResponseEntity("No Movie found for ID " + movieId, HttpStatus.NOT_FOUND);
+        }
+        else
+        {
+            responseEntity= new ResponseEntity(movie, HttpStatus.OK);
+        }
+        return responseEntity;
     }
 
     @PostMapping
-    ResponseEntity createMovie(@RequestBody Movie input)
+    ResponseEntity createMovie(@Valid @RequestBody Movie input, BindingResult bindingResult)
     {
+        ResponseEntity responseEntity;
+        if(bindingResult.hasErrors())
+        {
+            responseEntity=new ResponseEntity("Bad movie request", HttpStatus.BAD_REQUEST);
+        }
+        else
+        {
+            responseEntity=new ResponseEntity(input, HttpStatus.OK);
+            movieService.addMovie(input);
+        }
 
-
-        movieService.createMovie(input);
-        return new ResponseEntity(input, HttpStatus.OK);
+       return responseEntity;
     }
 
 

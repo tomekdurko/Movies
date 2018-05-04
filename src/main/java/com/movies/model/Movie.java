@@ -1,52 +1,38 @@
 package com.movies.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
-
-
+import javax.validation.constraints.NotNull;
 
 @Entity
-@AllArgsConstructor
-@RequiredArgsConstructor
+@Data
 public class Movie {
     @Id
     @GeneratedValue
-    @Getter
-    @Setter
     @JsonView(Views.Public.class)
     private long id;
 
-    @Getter
-    @Setter
+    @NotNull
     @JsonView(Views.Internal.class)
     private Integer year;
 
-    @Getter
-    @Setter
+    @NotNull
     @JsonView(Views.Internal.class)
     private String description;
 
-    @Getter
-    @Setter
+    @NotNull
     @JsonView(Views.Public.class)
     private String name;
 
-    @Getter
-    @Setter
+    @NotNull
     @JsonView(Views.Internal.class)
     private Integer duration;
 
-    @Getter
-    @Setter
+    @NotNull
     @JsonView(Views.Internal.class)
     private String director;
-
-
 }
